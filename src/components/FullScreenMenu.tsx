@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Icon } from './Icons';
+import type { MouseEvent } from 'react';
 
 const menuContent: any = {
     "who-we-are": {
@@ -78,8 +79,20 @@ export const FullScreenMenu = ({ activeMenu, onClose }: { activeMenu: string | n
                     animate={{ y: 0 }}
                     exit={{ y: "-100%" }}
                     transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                    className="fixed inset-0 z-50 bg-navy text-beige grid grid-cols-1 lg:grid-cols-2 pt-24 px-8 lg:px-20 overflow-y-auto"
+                    className="absolute inset-0 z-50 bg-navy text-beige grid grid-cols-1 lg:grid-cols-2 pt-24 px-8 lg:px-20 overflow-y-auto min-h-screen"
+                    onClick={(e: MouseEvent<HTMLDivElement>) => {
+                        if (e.target === e.currentTarget) {
+                            onClose();
+                        }
+                    }}
                 >
+                    <div
+                        className="absolute top-8 left-8 lg:left-20 cursor-pointer"
+                        onClick={() => handleNavigation('hero')}
+                    >
+                        <img src="/images/ns__logo__trans1.png" alt="Nordiska Solutions Logo" className="h-10" />
+                    </div>
+
                     <button
                         onClick={onClose}
                         className="absolute top-8 right-8 text-beige hover:text-teal transition-colors"
