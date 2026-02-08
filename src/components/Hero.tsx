@@ -1,79 +1,50 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
-
-const heroImageIds = ['hero', 'solution-1', 'solution-2'];
 
 export const Hero = () => {
-    const images = heroImageIds.map(id => PlaceHolderImages.find(img => img.id === id)).filter(Boolean);
-
     return (
-        <section id="hero" className="relative min-h-screen flex items-center bg-navy text-beige overflow-hidden">
-            <div className="container mx-auto px-6 relative z-10 py-24 sm:py-32">
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                    <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="text-center lg:text-left"
-                    >
-                        <h1 className="font-display text-5xl md:text-6xl font-bold leading-tight mb-4 text-white">
-                            Engineering a Sustainable Future.
-                        </h1>
-                        <p className="text-lg md:text-xl text-gray-300 max-w-lg mx-auto lg:mx-0 font-light">
-                           Pioneering cleantech innovations for a cleaner world.
-                        </p>
-                    </motion.div>
-                    
-                    <motion.div 
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.5 }}
-                        variants={{
-                            visible: {
-                                transition: {
-                                    staggerChildren: 0.2
-                                }
-                            }
-                        }}
-                        className="grid grid-cols-2 grid-rows-2 gap-4 h-[300px] md:h-[500px]"
-                    >
-                        {images.map((image, index) => {
-                            if (!image || !image.imageUrl) return null;
+        <section className="relative h-screen w-full flex flex-col md:flex-row bg-navy overflow-hidden">
+            {/* Left Split */}
+            <motion.div
+                initial={{ x: "-100%" }}
+                animate={{ x: 0 }}
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                className="w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden group"
+            >
+                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center filter grayscale contrast-125 transition-transform duration-[2s] group-hover:scale-110"></div>
+                <div className="absolute inset-0 bg-navy/60 mix-blend-multiply"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-navy to-transparent opacity-80"></div>
+            </motion.div>
 
-                            let className = "relative rounded-xl overflow-hidden shadow-lg shadow-navy/40";
-                            if (index === 0) className += " row-span-2";
-                            if (index === 1) className += " col-start-2";
-                            if (index === 2) className += " col-start-2 row-start-2";
-                            
-                            return (
-                                <motion.div
-                                    key={image.id}
-                                    className={className}
-                                    variants={{
-                                        hidden: { opacity: 0, scale: 0.8 },
-                                        visible: { opacity: 1, scale: 1 }
-                                    }}
-                                    transition={{ ease: "easeOut", duration: 0.5 }}
-                                >
-                                    <Image
-                                        src={image.imageUrl}
-                                        alt={image.description}
-                                        fill
-                                        className="object-cover"
-                                        data-ai-hint={image.imageHint}
-                                        priority={index === 0}
-                                    />
-                                </motion.div>
-                            );
-                        })}
-                    </motion.div>
-                </div>
+            {/* Right Split */}
+            <motion.div
+                initial={{ x: "100%" }}
+                animate={{ x: 0 }}
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                className="w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden group"
+            >
+                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2301&auto=format&fit=crop')] bg-cover bg-center transition-transform duration-[2s] group-hover:scale-110"></div>
+                <div className="absolute inset-0 bg-teal/80 mix-blend-multiply"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-navy to-transparent opacity-90"></div>
+            </motion.div>
+
+            {/* Center Content */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center z-20 pointer-events-none mix-blend-screen">
+                <motion.h1
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.5, duration: 0.8 }}
+                    className="font-display font-extrabold text-[12vw] md:text-[7vw] leading-[0.85] tracking-tighter text-center text-white"
+                >
+                    <span className="block text-stroke opacity-75">BRIDGING</span>
+                    <span className="block">CONTINENTS</span>
+                </motion.h1>
             </div>
-             {/* Decorative Element */}
-             <div className="absolute -bottom-1/4 -left-1/4 w-1/2 h-1/2 bg-teal/10 blur-[150px] rounded-full pointer-events-none"></div>
+
+            <div className="absolute bottom-12 w-full text-center z-30">
+                 <p className="text-teal text-xs font-bold uppercase tracking-[0.4em] animate-pulse">Scroll to Explore</p>
+            </div>
         </section>
     );
 };
