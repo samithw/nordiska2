@@ -1,62 +1,105 @@
 'use client';
-import { motion } from 'framer-motion';
-import { Icon } from './Icons';
 
-const services = [
-    { title: "Sales & Marketing", desc: "Expert inbound/outbound strategies tailored for EU-Asia markets.", icon: "target" },
-    { title: "Partner Search", desc: "Connecting you with vetted business partners and customers.", icon: "users" },
-    { title: "Business Development", desc: "Strategic growth planning and market penetration.", icon: "trending-up" },
-    { title: "GTM Strategy", desc: "Comprehensive Go-To-Market execution for new regions.", icon: "map" },
-    { title: "App Consultancy", desc: "Technical advisory for specialized industrial applications.", icon: "cpu" },
-    { title: "On-Site Training", desc: "Knowledge transfer workshops and operational training.", icon: "book-open" },
-    { title: "Aftersales Services", desc: "Long-term maintenance and lifecycle support.", icon: "tool" },
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const accordionData = [
+    {
+        num: "01",
+        title: "Sales & Marketing",
+        desc: "Expert inbound/outbound strategies tailored for EU-Asia markets. We build your brand presence and drive qualified leads.",
+    },
+    {
+        num: "02",
+        title: "Partner & Customer Search",
+        desc: "Connecting you with vetted business partners and customers. We leverage our extensive network to find the perfect match for your business.",
+    },
+    {
+        num: "03",
+        title: "Business Development",
+        desc: "Strategic growth planning and market penetration. We identify new opportunities and create pathways for sustainable expansion.",
+    },
+    {
+        num: "04",
+        title: "GTM Strategy",
+        desc: "Comprehensive Go-To-Market execution for new regions. From planning to launch, we ensure a successful market entry.",
+    },
+    {
+        num: "05",
+        title: "Application Consultancy",
+        desc: "Technical advisory for specialized industrial applications. Our experts provide insights to optimize your technology stack.",
+    },
+    {
+        num: "06",
+        title: "On-Site Training",
+        desc: "Knowledge transfer workshops and operational training. We empower your team with the skills they need to succeed.",
+    },
+    {
+        num: "07",
+        title: "Aftersales Services",
+        desc: "Long-term maintenance and lifecycle support to ensure operational excellence and customer satisfaction.",
+    }
 ];
 
-const ServiceCard = ({ service, index }: { service: any, index: any }) => (
-    <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: index * 0.1 }}
-        className="group p-8 border border-navy/5 bg-white hover:bg-navy transition-all duration-500 cursor-pointer relative overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2"
-    >
-        <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
-            <Icon name={service.icon} className="w-32 h-32 text-teal" />
-        </div>
 
-        <div className="w-14 h-14 bg-teal/10 group-hover:bg-teal text-teal group-hover:text-white flex items-center justify-center rounded-xl mb-8 transition-colors">
-            <Icon name={service.icon} className="w-7 h-7" />
-        </div>
-
-        <h3 className="font-display text-2xl font-bold mb-4 text-navy group-hover:text-white transition-colors">{service.title}</h3>
-        <p className="text-steel group-hover:text-gray-300 font-light leading-relaxed mb-8 transition-colors">{service.desc}</p>
-
-        <div className="flex items-center gap-2 text-teal text-xs font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
-            Details <Icon name="chevronRight" className="w-4 h-4" />
-        </div>
-    </motion.div>
+const AccordionItem = ({ item, isOpen, onClick }: { item: any, isOpen: boolean, onClick: () => void}) => (
+    <div className="border-b border-navy/10">
+        <button
+            onClick={onClick}
+            className="w-full py-10 flex justify-between items-center text-left group hover:bg-white/50 transition-colors px-4 md:px-8"
+        >
+            <div className="flex items-center gap-8">
+                <span className={`font-display text-sm font-bold ${isOpen ? 'text-teal' : 'text-navy/30'}`}>{item.num}</span>
+                <h3 className={`font-display text-2xl md:text-4xl font-bold uppercase transition-colors ${isOpen ? 'text-teal' : 'text-navy group-hover:text-teal'}`}>
+                    {item.title}
+                </h3>
+            </div>
+            <div className={`transition-transform duration-500 ${isOpen ? 'rotate-45 text-teal' : 'text-navy'}`}>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </div>
+        </button>
+        <AnimatePresence>
+            {isOpen && (
+                <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                >
+                    <div className="pb-12 pl-16 md:pl-24 pr-8 md:pr-32">
+                        <p className="text-lg text-steel leading-relaxed">{item.desc}</p>
+                    </div>
+                </motion.div>
+            )}
+        </AnimatePresence>
+    </div>
 );
 
-export const Services = () => (
-    <section id="what-we-do" className="py-32 px-6 bg-beige">
-        <div className="container mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20">
-                <div className="lg:col-span-5">
+
+export const Services = () => {
+    const [openIndex, setOpenIndex] = useState(0);
+
+    return (
+        <section id="what-we-do" className="py-32 bg-beige">
+            <div className="container mx-auto px-6">
+                <div className="text-center mb-16">
                     <span className="text-teal font-bold uppercase tracking-widest text-xs mb-4 block">Our Expertise</span>
                     <h2 className="font-display text-5xl lg:text-6xl font-bold text-navy leading-tight">
-                        Comprehensive <br /> Service Modules.
+                        Lifecycle Solutions.
                     </h2>
                 </div>
-                <div className="lg:col-span-7 flex items-end">
-                    <p className="text-xl text-steel font-light max-w-2xl leading-relaxed">
-                        We don't just consult; we execute. From the first handshake in Helsinki to the final site commissioning in Hanoi, we handle the entire lifecycle.
-                    </p>
+                <div className="border-t border-navy/10">
+                    {accordionData.map((item, idx) => (
+                        <AccordionItem
+                            key={idx}
+                            item={item}
+                            isOpen={openIndex === idx}
+                            onClick={() => setOpenIndex(openIndex === idx ? -1 : idx)}
+                        />
+                    ))}
                 </div>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {services.map((s, i) => <ServiceCard key={i} service={s} index={i} />)}
-            </div>
-        </div>
-    </section>
-);
+        </section>
+    );
+};
