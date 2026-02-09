@@ -30,7 +30,7 @@ const services = [
         short_title: "Business Dev",
         description: "Our team specializes in strategic growth planning and market penetration. We identify new opportunities and create actionable pathways for sustainable and profitable expansion into new territories. From joint ventures to strategic alliances, we pave the way for your success.",
         icon: "trending-up",
-        image: "https://images.unsplash.com/photo-1522881193457-31ae8fc3204b?q=80&w=2070&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1522881193457-31ae8fc3204b?q=80&w=2070&auto=format=fit=crop",
         imageHint: "city growth chart",
         link: "#"
     },
@@ -39,7 +39,7 @@ const services = [
         short_title: "GTM Strategy",
         description: "We offer a comprehensive Go-To-Market execution for companies entering new regions. Our service covers every phase, from initial market research and planning to a successful and impactful launch. We ensure your product-market fit is perfect before you invest heavily.",
         icon: "map",
-        image: "https://images.unsplash.com/photo-1542314831-068cd1dbb563?q=80&w=2070&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1542314831-068cd1dbb563?q=80&w=2070&auto=format=fit=crop",
         imageHint: "world map strategy",
         link: "#"
     },
@@ -48,7 +48,7 @@ const services = [
         short_title: "App Consultancy",
         description: "Our seasoned experts offer high-level technical advisory for specialized industrial applications. We provide critical insights to help you design, optimize, and future-proof your technology stack. We help you navigate complex technical landscapes with confidence.",
         icon: "cpu",
-        image: "https://images.unsplash.com/photo-1496065187959-7f07b8353c55?q=80&w=2070&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1496065187959-7f07b8353c55?q=80&w=2070&auto=format=fit=crop",
         imageHint: "industrial technology",
         link: "#"
     },
@@ -57,7 +57,7 @@ const services = [
         short_title: "On-Site Training",
         description: "We empower your team with the knowledge they need to excel. Our on-site training programs and workshops are practical, engaging, and directly applicable to your daily operations. Our goal is to make your team self-sufficient and highly skilled.",
         icon: "book-open",
-        image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format=fit=crop",
         imageHint: "team workshop",
         link: "#"
     },
@@ -66,7 +66,7 @@ const services = [
         short_title: "Aftersales",
         description: "Our commitment extends beyond project completion. We provide robust, long-term maintenance and lifecycle support to ensure continuous operational excellence and maximize your return on investment. We are your partners for the long haul.",
         icon: "tool",
-        image: "https://images.unsplash.com/photo-1455165814004-1126a7199f9b?q=80&w=2070&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1455165814004-1126a7199f9b?q=80&w=2070&auto=format=fit=crop",
         imageHint: "engineer working",
         link: "#"
     }
@@ -77,7 +77,7 @@ export const Services = () => {
     const activeService = services[activeTab];
 
     return (
-        <section id="what-we-do" className="py-32 bg-navy text-beige">
+        <section id="what-we-do" className="py-32 bg-teal text-beige">
             <div className="container mx-auto px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -85,7 +85,7 @@ export const Services = () => {
                     viewport={{ once: true }}
                     className="text-center mb-20"
                 >
-                    <span className="text-teal font-bold uppercase tracking-widest text-xs mb-4 block">Our Expertise</span>
+                    <span className="text-white font-bold uppercase tracking-widest text-xs mb-4 block">Our Expertise</span>
                     <h2 className="font-display text-5xl lg:text-6xl font-bold text-white leading-tight">
                         Comprehensive Services.
                     </h2>
@@ -105,7 +105,7 @@ export const Services = () => {
                                                 : 'border-transparent text-gray-400 hover:bg-steel/20 hover:text-white'
                                         }`}
                                     >
-                                        <Icon name={service.icon} className={`w-8 h-8 transition-colors shrink-0 ${activeTab === index ? 'text-teal' : ''}`} />
+                                        <Icon name={service.icon} className={`w-8 h-8 transition-colors shrink-0 ${activeTab === index ? 'text-white' : ''}`} />
                                         <span className="font-display font-bold text-xl">{service.short_title}</span>
                                     </button>
                                 </li>
@@ -132,12 +132,12 @@ export const Services = () => {
                                         className="object-cover"
                                         data-ai-hint={activeService.imageHint}
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent"></div>
+                                    <div className="absolute inset-0 bg-gradient-to-t from-teal/60 to-transparent"></div>
                                </div>
                                <div>
                                      <h3 className="font-display text-4xl font-bold text-white mb-4">{activeService.title}</h3>
                                      <p className="text-gray-300 font-light leading-relaxed text-lg mb-8">{activeService.description}</p>
-                                     <Link href={activeService.link} className="group text-teal font-bold uppercase tracking-widest text-sm flex items-center gap-2 hover:gap-4 transition-all">
+                                     <Link href={activeService.link} className="group text-white font-bold uppercase tracking-widest text-sm flex items-center gap-2 hover:gap-4 transition-all">
                                             Read More <Icon name="arrow" className="w-4 h-4" />
                                      </Link>
                                 </div>
