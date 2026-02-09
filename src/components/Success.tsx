@@ -56,7 +56,7 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => (
 
 
 export const Success = () => (
-    <section id="success-stories" className="py-32 bg-beige">
+    <section id="success-stories" className="py-32 bg-white">
         <div className="container mx-auto px-6 space-y-16">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}

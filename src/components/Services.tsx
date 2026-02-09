@@ -57,7 +57,7 @@ const services = [
 
 export const Services = () => {
     return (
-        <section id="what-we-do" className="py-32 bg-beige overflow-hidden">
+        <section id="what-we-do" className="py-32 bg-white overflow-hidden">
             <div className="container mx-auto px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

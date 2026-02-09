@@ -14,10 +14,10 @@ const Page = () => {
       <Navbar />
       <Hero />
       <WhoWeAre />
-      <Services />
       <Industries />
-      <Success />
+      <Services />
       <Contacts />
+      <Success />
     </main>
   );
 };
