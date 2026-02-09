@@ -77,75 +77,85 @@ export const Services = () => {
     const activeService = services[activeTab];
 
     return (
-        <section id="what-we-do" className="py-32 bg-teal text-beige">
-            <div className="container mx-auto px-6">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-20"
-                >
-                    <span className="text-white font-bold uppercase tracking-widest text-xs mb-4 block">Our Expertise</span>
+        <section id="what-we-do" className="relative flex flex-col lg:flex-row min-h-screen overflow-hidden">
+            {/* Left Pane - Tabs */}
+            <motion.div
+                initial={{ x: "-100%" }}
+                animate={{ x: 0 }}
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                className="w-full lg:w-1/2 bg-navy text-beige p-8 py-16 lg:p-16 flex flex-col justify-center"
+            >
+                <div className="mb-12">
+                     <span className="text-teal font-bold uppercase tracking-widest text-xs mb-4 block">Our Expertise</span>
                     <h2 className="font-display text-5xl lg:text-6xl font-bold text-white leading-tight">
                         Comprehensive Services.
                     </h2>
-                </motion.div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 min-h-[500px]">
-                    {/* Vertical Tabs */}
-                    <div className="lg:col-span-4 flex flex-col border-l border-steel/30">
-                        <ul className="flex flex-col">
-                            {services.map((service, index) => (
-                                <li key={index}>
-                                    <button
-                                        onClick={() => setActiveTab(index)}
-                                        className={`w-full text-left p-6 transition-all duration-300 flex items-center gap-5 border-l-4 ${
-                                            activeTab === index
-                                                ? 'bg-steel/20 border-teal'
-                                                : 'border-transparent text-gray-400 hover:bg-steel/20 hover:text-white'
-                                        }`}
-                                    >
-                                        <Icon name={service.icon} className={`w-8 h-8 transition-colors shrink-0 ${activeTab === index ? 'text-white' : ''}`} />
-                                        <span className="font-display font-bold text-xl">{service.short_title}</span>
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Content Pane */}
-                    <div className="lg:col-span-8 relative">
-                        <AnimatePresence mode="wait">
-                            <motion.div
-                                key={activeTab}
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -20 }}
-                                transition={{ duration: 0.4, ease: "easeInOut" }}
-                                className="w-full h-full flex flex-col"
+                </div>
+                <ul className="flex flex-col">
+                    {services.map((service, index) => (
+                        <li key={index}>
+                            <button
+                                onClick={() => setActiveTab(index)}
+                                className={`w-full text-left p-6 transition-colors duration-300 flex items-start gap-5 border-l-4 ${
+                                    activeTab === index
+                                        ? 'bg-steel/30 border-teal'
+                                        : 'border-transparent hover:bg-steel/20'
+                                }`}
                             >
-                               <div className="relative w-full h-72 md:h-80 mb-8 overflow-hidden">
-                                    <Image
-                                        src={activeService.image}
-                                        alt={activeService.title}
-                                        fill
-                                        className="object-cover"
-                                        data-ai-hint={activeService.imageHint}
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-teal/60 to-transparent"></div>
-                               </div>
-                               <div>
-                                     <h3 className="font-display text-4xl font-bold text-white mb-4">{activeService.title}</h3>
-                                     <p className="text-gray-300 font-light leading-relaxed text-lg mb-8">{activeService.description}</p>
+                                <Icon name={service.icon} className={`w-8 h-8 transition-colors shrink-0 mt-1 ${activeTab === index ? 'text-teal' : 'text-white'}`} />
+                                <div>
+                                    <h3 className={`font-display font-bold text-2xl transition-colors ${activeTab === index ? 'text-white' : 'text-gray-300'}`}>{service.title}</h3>
+                                    <p className="font-light text-sm text-gray-400 mt-2 pr-4 hidden md:block">
+                                        {service.description.split('.')[0]}.
+                                    </p>
+                                </div>
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+            </motion.div>
+
+            {/* Right Pane - Content */}
+            <motion.div
+                initial={{ x: "100%" }}
+                animate={{ x: 0 }}
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                className="w-full lg:w-1/2 bg-teal text-beige relative"
+            >
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={activeTab}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                        className="w-full h-full"
+                    >
+                       <div className="relative w-full h-full min-h-[75vh] lg:min-h-screen">
+                            <Image
+                                src={activeService.image}
+                                alt={activeService.title}
+                                fill
+                                className="object-cover"
+                                data-ai-hint={activeService.imageHint}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-teal via-teal/70 to-transparent flex flex-col justify-end p-8 lg:p-16">
+                                <motion.div
+                                     initial={{ opacity: 0, y: 30 }}
+                                     animate={{ opacity: 1, y: 0 }}
+                                     transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                                >
+                                     <h3 className="font-display text-4xl lg:text-5xl font-bold text-white mb-4">{activeService.title}</h3>
+                                     <p className="text-gray-200 font-light leading-relaxed text-lg mb-8 max-w-xl">{activeService.description}</p>
                                      <Link href={activeService.link} className="group text-white font-bold uppercase tracking-widest text-sm flex items-center gap-2 hover:gap-4 transition-all">
                                             Read More <Icon name="arrow" className="w-4 h-4" />
                                      </Link>
-                                </div>
-                            </motion.div>
-                        </AnimatePresence>
-                    </div>
-                </div>
-            </div>
+                                </motion.div>
+                            </div>
+                       </div>
+                    </motion.div>
+                </AnimatePresence>
+            </motion.div>
         </section>
     );
 };
