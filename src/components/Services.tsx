@@ -30,8 +30,8 @@ const services = [
         short_title: "Business Dev",
         description: "Our team specializes in strategic growth planning and market penetration. We identify new opportunities and create actionable pathways for sustainable and profitable expansion into new territories. From joint ventures to strategic alliances, we pave the way for your success.",
         icon: "trending-up",
-        image: "https://images.unsplash.com/photo-1522881193457-31ae8fc3204b?q=80&w=2070&auto=format=fit=crop",
-        imageHint: "city growth chart",
+        image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2070&auto=format=fit=crop",
+        imageHint: "business strategy meeting",
         link: "#"
     },
     {
@@ -39,8 +39,8 @@ const services = [
         short_title: "GTM Strategy",
         description: "We offer a comprehensive Go-To-Market execution for companies entering new regions. Our service covers every phase, from initial market research and planning to a successful and impactful launch. We ensure your product-market fit is perfect before you invest heavily.",
         icon: "map",
-        image: "https://images.unsplash.com/photo-1542314831-068cd1dbb563?q=80&w=2070&auto=format=fit=crop",
-        imageHint: "world map strategy",
+        image: "https://images.unsplash.com/photo-1543286386-713bdd548da4?q=80&w=2070&auto=format=fit=crop",
+        imageHint: "market strategy chart",
         link: "#"
     },
     {
@@ -48,8 +48,8 @@ const services = [
         short_title: "App Consultancy",
         description: "Our seasoned experts offer high-level technical advisory for specialized industrial applications. We provide critical insights to help you design, optimize, and future-proof your technology stack. We help you navigate complex technical landscapes with confidence.",
         icon: "cpu",
-        image: "https://images.unsplash.com/photo-1496065187959-7f07b8353c55?q=80&w=2070&auto=format=fit=crop",
-        imageHint: "industrial technology",
+        image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format=fit=crop",
+        imageHint: "business consultation",
         link: "#"
     },
     {
@@ -66,8 +66,8 @@ const services = [
         short_title: "Aftersales",
         description: "Our commitment extends beyond project completion. We provide robust, long-term maintenance and lifecycle support to ensure continuous operational excellence and maximize your return on investment. We are your partners for the long haul.",
         icon: "tool",
-        image: "https://images.unsplash.com/photo-1455165814004-1126a7199f9b?q=80&w=2070&auto=format=fit=crop",
-        imageHint: "engineer working",
+        image: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=2069&auto=format=fit=crop",
+        imageHint: "engineer maintenance",
         link: "#"
     }
 ];
