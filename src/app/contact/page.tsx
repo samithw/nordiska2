@@ -1,4 +1,4 @@
-import { ContactForm } from "@/components/contact-form";
+import { Contacts } from "@/components/Contacts";
 import { Mail, Phone, MapPin } from "lucide-react";
 import type { Metadata } from "next";
 
@@ -67,7 +67,7 @@ export default function ContactPage() {
               <h2 className="font-headline text-3xl font-bold text-primary mb-6">
                 Send us a Message
               </h2>
-              <ContactForm />
+              <Contacts />
             </div>
           </div>
         </div>
