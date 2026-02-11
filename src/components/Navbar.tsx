@@ -35,7 +35,7 @@ export const Navbar = () => {
             <nav className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 ${scrolled ? 'bg-navy/95 backdrop-blur-md py-4 shadow-xl' : 'bg-transparent py-8'}`}>
                 <div className="container mx-auto px-6 flex justify-between items-center text-beige">
                 <div className="cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-                        <Image src="/images/ns__logo__trans1.png" alt="NORDISKA Logo" width={160} height={40} className="h-10 w-auto" />
+                        <Image src="./images/ns__logo__trans1.png" alt="NORDISKA Logo" width={160} height={40} className="h-10 w-auto" />
                     </div>
 
                     <div className="hidden md:flex items-center gap-10 font-medium text-sm">
