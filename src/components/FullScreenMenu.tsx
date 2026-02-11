@@ -92,9 +92,7 @@ export const FullScreenMenu = ({ activeMenu, onClose }: { activeMenu: string | n
                         className="absolute top-8 left-8 lg:left-20 cursor-pointer"
                         onClick={() => handleNavigation('hero')}
                     >
-                        <div className="font-display font-extrabold text-2xl tracking-tighter flex items-center gap-2">
-                            NORDISKA<span className="text-teal text-4xl leading-none">.</span>
-                        </div>
+                        <img src="/images/ns__logo__trans1.png" alt="NORDISKA Logo" className="h-10" />
                     </div>
 
                     <button
